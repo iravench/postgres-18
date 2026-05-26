@@ -24,10 +24,17 @@ ENV POSTGIS_VERSION=3.6.3
 ENV PGVECTOR_VERSION=0.8.2
 ENV PG_MAJOR=18
 
-# Install PostGIS and pgvector from the Debian Trixie/PGDG repos.
+# Upgrade base system packages for latest security fixes, then install
+# PostGIS and pgvector from the Debian Trixie/PGDG repos.
+#
+# Note: upgrading in-place breaks bitwise reproducibility (build today vs
+# build in 3 months may differ). For local dev the security benefit outweighs
+# this. Production: pin apt package versions or rely on fresh base pulls.
+#
 # postgresql-18-postgis-3  → PostGIS ${POSTGIS_VERSION}
 # postgresql-18-pgvector   → pgvector ${PGVECTOR_VERSION} (PG18 native, CVE-2026-3172 fix)
 RUN apt-get update -qq && \
+    apt-get upgrade -y --no-install-recommends && \
     apt-get install -y --no-install-recommends \
         postgresql-${PG_MAJOR}-postgis-3 \
         postgresql-${PG_MAJOR}-pgvector \
