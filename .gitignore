@@ -1,0 +1,12 @@
+# Docker build cache
+*.tar.gz
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+
+# Docker
+*.log
