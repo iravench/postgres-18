@@ -55,6 +55,6 @@ ORDER BY cosine_distance
 LIMIT 2;
 
 \echo ''
-\echo '✅ PostgreSQL 18 + PostGIS 3.6.3 + pgvector 0.8.2 ready'
+\echo '✅ PostgreSQL 18 + PostGIS 3.6.4 + pgvector 0.8.6 ready'
 \echo '   Sample table exemplo_dados with spatial + vector data created'
 \echo ''
